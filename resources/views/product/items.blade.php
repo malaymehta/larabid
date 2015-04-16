@@ -33,7 +33,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
+                                <label class="col-md-4 control-label">Minimum Bid Amount</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="min_bid" id="min_bid" value="{{ old('min_bid') }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Image</label>
                                 <div class="col-md-6">
                                     <input type="file" class="form-control" name="image">
                                 </div>

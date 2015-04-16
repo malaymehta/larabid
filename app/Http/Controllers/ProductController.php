@@ -31,23 +31,27 @@ class ProductController extends Controller {
             'title' => Input::get('title'),
 			'description' => Input::get('description'),
 			'image' => Input::get('image'),
+			'min_bid' => Input::get('min_bid'),
 			'status' => 1
         );
-		$validator = Validator::make($data, Product::$store_rules);
+		$validator = Validator::make(Input::all(), Product::$store_rules);
 		if ($validator->passes()) {
 			$user            = Auth::user();
 			$file = Request::file('image');
-			$fileName = $file->getClientOriginalName();
+
 			$extension = $file->getClientOriginalExtension();
+      		$file_rename = rand(11111,99999).'.'.$extension;
 			$product_data = new Product();
 			$product_data->fill($data);
-			$product_data['image'] = $file->getFilename().time().'.'.$extension;
-			if($product_data->save()) {
-				$file->move(public_path().'/uploads', $fileName);
+			$product_data['image'] = $file_rename;
+
+			if($user->product()->save($product_data)) {
+				$file->move(public_path().'/uploads', $file_rename);
 			} else {
 				Session::flash('message.arrayErrors', $validator->messages()->all());
 				return Redirect::to('product.items')->withInput(Input::all());
 			}
+
 			Session::flash('message.success', ' Item successfully added.');
 			return Redirect::to("home");
 		} else {

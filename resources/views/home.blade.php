@@ -15,37 +15,6 @@
 
             <div class="col-md-9">
 
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div data-ride="carousel" class="carousel slide" id="carousel-example-generic">
-                            <ol class="carousel-indicators">
-                                <li class="" data-slide-to="0" data-target="#carousel-example-generic"></li>
-                                <li data-slide-to="1" data-target="#carousel-example-generic" class=""></li>
-                                <li data-slide-to="2" data-target="#carousel-example-generic" class="active"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item">
-                                    <img alt="" src="http://placehold.it/800x300" class="slide-image">
-                                </div>
-                                <div class="item">
-                                    <img alt="" src="http://placehold.it/800x300" class="slide-image">
-                                </div>
-                                <div class="item active">
-                                    <img alt="" src="http://placehold.it/800x300" class="slide-image">
-                                </div>
-                            </div>
-                            <a data-slide="prev" href="#carousel-example-generic" class="left carousel-control">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a data-slide="next" href="#carousel-example-generic" class="right carousel-control">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
                 <div class="row">
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
