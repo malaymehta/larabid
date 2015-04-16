@@ -2,20 +2,13 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use View;
+//use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use View, Validator, Input, Auth, Request, Session, Redirect;
 
 class ProductController extends Controller {
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -34,51 +27,35 @@ class ProductController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data = array(
+            'title' => Input::get('title'),
+			'description' => Input::get('description'),
+			'image' => Input::get('image'),
+			'status' => 1
+        );
+		$validator = Validator::make($data, Product::$store_rules);
+		if ($validator->passes()) {
+			$user            = Auth::user();
+			$file = Request::file('image');
+			$fileName = $file->getClientOriginalName();
+			$extension = $file->getClientOriginalExtension();
+			$product_data = new Product();
+			$product_data->fill($data);
+			$product_data['image'] = $file->getFilename().time().'.'.$extension;
+			if($product_data->save()) {
+				$file->move(public_path().'/uploads', $fileName);
+			} else {
+				Session::flash('message.arrayErrors', $validator->messages()->all());
+				return Redirect::to('product.items')->withInput(Input::all());
+			}
+			Session::flash('message.success', ' Item successfully added.');
+			return Redirect::to("home");
+		} else {
+			Session::flash('message.arrayErrors', $validator->messages()->all());
+			return Redirect::to('home');
+		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }
