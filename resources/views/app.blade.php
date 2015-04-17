@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel | Bidding System</title>
 
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Fonts -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    {!! HTML::style("vendor/css/app.css")!!}
+    {!! HTML::style("vendor/css/bootstrap-datetimepicker.min.css")!!}
+    {!! HTML::style("//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")!!}
+
+    <!-- Fonts -->
+    {!! HTML::style("//fonts.googleapis.com/css?family=Roboto:400,300")!!}
+
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    {!! HTML::script("https://oss.maxcdn.com/respond/1.4.2/respond.min.js")  !!}
     <![endif]-->
 </head>
 <body>
@@ -56,9 +56,8 @@
 @yield('content')
 
 <!-- Scripts -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
-
+{!! HTML::script("vendor/js/jquery-2.1.3.js")  !!}
+{!! HTML::script("//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js")  !!}
+{!! HTML::script("vendor/js/bootstrap-datetimepicker.min.js")  !!}
 </body>
 </html>

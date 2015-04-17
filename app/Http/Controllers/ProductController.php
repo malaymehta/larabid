@@ -13,7 +13,7 @@ class ProductController extends Controller
 	 */
 	public function create()
 	{
-		return View::make('product.items');
+		return View::make('product.add');
 	}
 
 	/**
@@ -22,44 +22,41 @@ class ProductController extends Controller
 	 */
 	public function store()
 	{
-		$data      = array(
-			'title'       => Input::get('title'),
-			'description' => Input::get('description'),
-			'image'       => Input::get('image'),
-			'min_bid'     => Input::get('min_bid'),
-			'status'      => 1
-		);
-		$validator = Validator::make(Input::all(), Product::$store_rules);
+		$validator = Validator::make(Input::all(), Product::$product_rules);
 		if ($validator->passes()) {
-			$user = Auth::user();
-			$file = Request::file('image');
-
-			$extension    = $file->getClientOriginalExtension();
-			$file_rename  = rand(11111, 99999) . '.' . $extension;
-			$product_data = new Product();
-			$product_data->fill($data);
-			$product_data['image'] = $file_rename;
-
-			if ($user->product()->save($product_data)) {
-				$file->move(public_path() . '/uploads', $file_rename);
-			} else {
-				Session::flash('message.arrayErrors', $validator->messages()->all());
-				return Redirect::to('product.items')->withInput(Input::all());
+			$user        = Auth::user();
+			$file_rename = $this->renameImage();
+			if (Request::file('image')->move(public_path() . '/uploads', $file_rename)) {
+				$product_data = new Product();
+				$product_data->fill(Input::all());
+				$product_data['image'] = $file_rename;
+				if ($user->product()->save($product_data)) {
+					Session::flash('message.success', 'Item added successfully.');
+					return Redirect::to("home");
+				} else {
+					Session::flash('message.arrayErrors', $validator->messages()->all());
+					return Redirect::to('add-product')->withInput(Input::all());
+				}
 			}
-
-			Session::flash('message.success', ' Item successfully added.');
-			return Redirect::to("home");
 		} else {
 			Session::flash('message.arrayErrors', $validator->messages()->all());
-			return Redirect::to('home');
+			return Redirect::to('add-product')->withInput(Input::all());
 		}
 	}
 
-	public function info($item_id =0)
+	public function info($item_id = 0)
 	{
-		$relatedItemInfo = Product::where("item_id","!=",$item_id);
-		$itemInfo = Product::find($item_id);
-		return View::make("product.info")->with("itemInfo",$itemInfo)->with("relatedItemInfo",$relatedItemInfo);
+		$relatedItemInfo = Product::where("item_id", "!=", $item_id);
+		$itemInfo        = Product::find($item_id);
+		return View::make("product.info")->with("itemInfo", $itemInfo)->with("relatedItemInfo", $relatedItemInfo);
+	}
+
+	public function renameImage()
+	{
+		$file        = Request::file('image');
+		$extension   = $file->getClientOriginalExtension();
+		$file_rename = str_random() . '.' . $extension;
+		return $file_rename;
 	}
 
 
