@@ -13,7 +13,7 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+	'debug' => true, // env('APP_DEBUG')
 
 	/*
 	|--------------------------------------------------------------------------
@@ -144,7 +144,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-
+		'Illuminate\Html\HtmlServiceProvider'
 	],
 
 	/*
@@ -191,7 +191,9 @@ return [
 		'Storage'   => 'Illuminate\Support\Facades\Storage',
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
-		'View'      => 'Illuminate\Support\Facades\View'
+		'View'      => 'Illuminate\Support\Facades\View',
+		'Form'		=> 'Illuminate\Html\FormFacade',
+		'HTML'		=> 'Illuminate\Html\HtmlFacade'
 	],
 
 ];

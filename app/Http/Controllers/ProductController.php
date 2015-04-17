@@ -1,18 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-//use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 use View, Validator, Input, Auth, Request, Session, Redirect;
 
-class ProductController extends Controller {
+class ProductController extends Controller
+{
 
 	/**
 	 * Show the form for creating a new resource.
-	 *
 	 * @return Response
 	 */
 	public function create()
@@ -22,31 +18,30 @@ class ProductController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$data = array(
-            'title' => Input::get('title'),
+		$data      = array(
+			'title'       => Input::get('title'),
 			'description' => Input::get('description'),
-			'image' => Input::get('image'),
-			'min_bid' => Input::get('min_bid'),
-			'status' => 1
-        );
+			'image'       => Input::get('image'),
+			'min_bid'     => Input::get('min_bid'),
+			'status'      => 1
+		);
 		$validator = Validator::make(Input::all(), Product::$store_rules);
 		if ($validator->passes()) {
-			$user            = Auth::user();
+			$user = Auth::user();
 			$file = Request::file('image');
 
-			$extension = $file->getClientOriginalExtension();
-      		$file_rename = rand(11111,99999).'.'.$extension;
+			$extension    = $file->getClientOriginalExtension();
+			$file_rename  = rand(11111, 99999) . '.' . $extension;
 			$product_data = new Product();
 			$product_data->fill($data);
 			$product_data['image'] = $file_rename;
 
-			if($user->product()->save($product_data)) {
-				$file->move(public_path().'/uploads', $file_rename);
+			if ($user->product()->save($product_data)) {
+				$file->move(public_path() . '/uploads', $file_rename);
 			} else {
 				Session::flash('message.arrayErrors', $validator->messages()->all());
 				return Redirect::to('product.items')->withInput(Input::all());
@@ -60,6 +55,12 @@ class ProductController extends Controller {
 		}
 	}
 
+	public function info($item_id =0)
+	{
+		$relatedItemInfo = Product::where("item_id","!=",$item_id);
+		$itemInfo = Product::find($item_id);
+		return View::make("product.info")->with("itemInfo",$itemInfo)->with("relatedItemInfo",$relatedItemInfo);
+	}
 
 
 }

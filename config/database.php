@@ -55,7 +55,7 @@ return [
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'laravel_bidding_system'),
+			'database' => env('DB_DATABASE', 'larabid'),
 			'username' => env('DB_USERNAME', 'root'),
 			'password' => env('DB_PASSWORD', 'mysql'),
 			'charset'   => 'utf8',

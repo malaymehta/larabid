@@ -25,7 +25,7 @@ class SessionController extends Controller {
             return Redirect::intended('home');
         }
         // authentication failure! lets go back to the login page
-        return Redirect::to('auth/login')
+        return Redirect::to('login')
         ->with('errors', 'Your Email Address/password combination was incorrect.')
         ->withInput();
 

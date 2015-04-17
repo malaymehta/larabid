@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Eloquent;
 

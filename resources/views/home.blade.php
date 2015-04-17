@@ -2,11 +2,10 @@
 
 @section('content')
     <div class="container">
-
         <div class="row">
-
             <div class="col-md-3">
                 <p class="lead">Menu</p>
+
                 <div class="list-group">
                     <a class="list-group-item" href="add-product">Add Items</a>
                     <a class="list-group-item" href="auth/logout">Logout</a>
@@ -16,144 +15,39 @@
             <div class="col-md-9">
 
                 <div class="row">
+                    @if(count($items) > 0)
+                        <!-- This is the section to be looped -->
+                        @foreach($items as $item_for_sell)
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <img alt="" src="http://placehold.it/320x150">
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img alt="" src="http://placehold.it/320x150">
+                                    <div class="caption">
+                                        <h5>{!! HTML::link("item-details/" . $item_for_sell->id, $item_for_sell->title) !!}</h5>
 
-                            <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
-                                </h4>
+                                        <p>{!! $item_for_sell->description !!}</p>
+                                        <hr/>
+                                        <p>
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                            Total Bids: 15
+                                        </p>
 
-                                <p>See more snippets like this online store item at <a href="http://www.bootsnipp.com" target="_blank">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                        <p class="pull-right alert-link">{!! HTML::link("bid-item/" .
+                                            $item_for_sell->id, "Bid Now") !!}</p>
+
+                                        <p>Bid Starts from ${!! $item_for_sell->min_bid !!}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img alt="" src="http://placehold.it/320x150">
-
-                            <div class="caption">
-                                <h4 class="pull-right">$64.99</h4>
-                                <h4><a href="#">Second Product</a>
-                                </h4>
-
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img alt="" src="http://placehold.it/320x150">
-
-                            <div class="caption">
-                                <h4 class="pull-right">$74.99</h4>
-                                <h4><a href="#">Third Product</a>
-                                </h4>
-
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img alt="" src="http://placehold.it/320x150">
-
-                            <div class="caption">
-                                <h4 class="pull-right">$84.99</h4>
-                                <h4><a href="#">Fourth Product</a>
-                                </h4>
-
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img alt="" src="http://placehold.it/320x150">
-
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Fifth Product</a>
-                                </h4>
-
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Like this template?</a>
-                        </h4>
-
-                        <p>If you like this template, then check out <a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/" target="_blank">this tutorial</a> on how to build a working review system for your online store!</p>
-                        <a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/" target="_blank" class="btn btn-primary">View Tutorial</a>
-                    </div>
-
+                            @endforeach
+                                    <!-- This is the section to be looped -->
+                            @else
+                                <p class='list-group-item-info'>No record found.</p>
+                            @endif
                 </div>
 
-            </div>
 
+            </div>
         </div>
 
     </div>

@@ -1,6 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-class WelcomeController extends Controller {
+use App\Models\Product;
+use View;
+
+class WelcomeController extends Controller
+{
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,7 +19,6 @@ class WelcomeController extends Controller {
 
 	/**
 	 * Create a new controller instance.
-	 *
 	 * @return void
 	 */
 	public function __construct()
@@ -30,7 +33,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('app');
+		return View::make('home')->with('items', Product::all());
 	}
 
 }
