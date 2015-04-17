@@ -12,9 +12,9 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-Route::get('auth/login', 'SessionController@create');
-Route::post('auth/login', 'SessionController@store');
-Route::get('auth/logout', 'SessionController@destroy');
+Route::get('login', 'SessionController@create');
+Route::post('login', 'SessionController@store');
+Route::get('logout', 'SessionController@destroy');
 
 Route::group(['middleware' => 'auth'], function ()
 {
@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function ()
 	Route::post('save-product', 'ProductController@store');
 });
 
+Route::get('item-details/{item_id}','ProductController@info');
+Route::get('bid/{item_id}','ProductController@info');
 Route::get('home', 'HomeController@index');
 
 Route::controllers([

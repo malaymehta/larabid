@@ -57,7 +57,6 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Bidding Ends on: </label>
-
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="bid_end_time" id="bid_end_time" value="{{ old('bid_start_time') }}">
                                 </div>
