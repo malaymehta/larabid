@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+Route::get('home', 'HomeController@index');
+
 Route::get('login', 'SessionController@create');
 Route::post('login', 'SessionController@store');
 Route::get('logout', 'SessionController@destroy');
@@ -22,9 +24,9 @@ Route::group(['middleware' => 'auth'], function ()
 	Route::post('save-product', 'ProductController@store');
 });
 
-Route::get('item-details/{item_id}','ProductController@info');
-Route::get('bid/{item_id}','ProductController@info');
-Route::get('home', 'HomeController@index');
+
+Route::get('item-details/{item_id}','ProductController@show');
+Route::post('item-details/{item_id}','BiddingController@store');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

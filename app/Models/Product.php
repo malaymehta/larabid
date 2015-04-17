@@ -12,7 +12,7 @@ class Product extends \Eloquent
 
 	public function __construct(array $attributes = array())
 	{
-		$this->setRawAttributes(array('bid_end_time' => \Input::get("bid_start_time")->addDays(30)), true);
+		//$this->setRawAttributes(array('bid_end_time' => \Input::get("bid_start_time")->addDays(30)), true);
 		parent::__construct($attributes);
 	}
 

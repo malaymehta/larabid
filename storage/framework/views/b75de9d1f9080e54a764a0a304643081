@@ -1,17 +1,18 @@
-@extends('app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Page Content -->
-    {!! Form::open(array( 'class' => 'form-horizontal', 'role' =>'form', 'enctype' => 'multipart/form-data')) !!}
+    <?php echo Form::open(array( 'class' => 'form-horizontal', 'role' =>'form', 'enctype' => 'multipart/form-data')); ?>
 
-    {!! Form::hidden('product_id', $itemInfo->item_id) !!}
-    {!! Form::hidden('minimum_bid_amount', $itemInfo->min_bid) !!}
+
+    <?php echo Form::hidden('product_id', $itemInfo->item_id); ?>
+
+    <?php echo Form::hidden('minimum_bid_amount', $itemInfo->min_bid); ?>
+
 
     <div class="container">
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{!! $itemInfo->title !!}</h1>
+                <h1 class="page-header"><?php echo $itemInfo->title; ?></h1>
             </div>
         </div>
         <!-- /.row -->
@@ -25,25 +26,25 @@
                 <div class="form-group">
                     <label>Item Description</label>
 
-                    <p>{!! $itemInfo->description !!}</p>
+                    <p><?php echo $itemInfo->description; ?></p>
                 </div>
 
                 <div class="form-group">
                     <label>Bid Starts On</label>
 
-                    <p>{!! date("m/d/Y H:i A",strtotime($itemInfo->bid_start_time)) !!}</p>
+                    <p><?php echo date("m/d/Y H:i A",strtotime($itemInfo->bid_start_time)); ?></p>
                 </div>
 
                 <div class="form-group">
                     <label>Bid Ends On</label>
 
-                    <p>{!! date("m/d/Y H:i A",strtotime($itemInfo->bid_end_time)) !!}</p>
+                    <p><?php echo date("m/d/Y H:i A",strtotime($itemInfo->bid_end_time)); ?></p>
                 </div>
 
                 <div class="form-group">
                     <label>Minimum Bid Amount</label>
 
-                    <p>{!! $itemInfo->min_bid !!}</p>
+                    <p><?php echo $itemInfo->min_bid; ?></p>
                 </div>
 
                 <div class="form-group">
@@ -61,25 +62,25 @@
         <!-- /.row -->
 
         <!-- Related Projects Row -->
-        @if (count($relatedItemInfo) > 0 && !empty($relatedItemInfo))
+        <?php if(count($relatedItemInfo) > 0 && !empty($relatedItemInfo)): ?>
             <div class="row">
 
                 <div class="col-lg-12">
                     <h3 class="page-header">Related Items</h3>
                 </div>
-                @foreach($relatedItemInfo as $relatedItem)
+                <?php foreach($relatedItemInfo as $relatedItem): ?>
                     <div class="col-sm-3 col-xs-6">
                         <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                        <h4>{!! HTML::link("item-details/" . $relatedItem->id, $relatedItem->title) !!}</h4>
+                        <h4><?php echo HTML::link("item-details/" . $relatedItem->id, $relatedItem->title); ?></h4>
                     </div>
-                @endforeach
+                <?php endforeach; ?>
 
             </div>
-        @else
+        <?php else: ?>
             <div class="row">
                 <div class="col-sm-3 col-xs-6">No Related Items Found</div>
             </div>
-            @endif
+            <?php endif; ?>
                     <!-- /.row -->
 
             <hr>
@@ -95,7 +96,10 @@
             </footer>
 
     </div>
-    {!! Form::close() !!}
-    <!-- /.container -->
-@endsection
+    <?php echo Form::close(); ?>
 
+    <!-- /.container -->
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

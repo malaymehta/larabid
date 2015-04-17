@@ -1,6 +1,4 @@
-@extends('app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -15,39 +13,41 @@
             <div class="col-md-9">
 
                 <div class="row">
-                    @if(count($items) > 0)
+                    <?php if(count($items) > 0): ?>
                         <!-- This is the section to be looped -->
-                        @foreach($items as $item_for_sell)
+                        <?php foreach($items as $item_for_sell): ?>
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
                                     <img alt="" src="http://placehold.it/320x150">
 
                                     <div class="caption">
-                                        <h5>{!! HTML::link("item-details/" . $item_for_sell->id, $item_for_sell->title) !!}</h5>
+                                        <h5><?php echo HTML::link("item-details/" . $item_for_sell->id, $item_for_sell->title); ?></h5>
 
-                                        <p>{!! $item_for_sell->description !!}</p>
+                                        <p><?php echo $item_for_sell->description; ?></p>
                                         <hr/>
                                         <p>
                                             <span class="glyphicon glyphicon-info-sign"></span>
                                             Total Bids: 15
                                         </p>
 
-                                        <p class="pull-right alert-link">{!! HTML::link("item-details/" .
-                                            $item_for_sell->id, "Bid Now") !!}</p>
+                                        <p class="pull-right alert-link"><?php echo HTML::link("item-details/" .
+                                            $item_for_sell->id, "Bid Now"); ?></p>
 
-                                        <p>Bid Starts from ${!! $item_for_sell->min_bid !!}</p>
+                                        <p>Bid Starts from $<?php echo $item_for_sell->min_bid; ?></p>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            <?php endforeach; ?>
                                     <!-- This is the section to be looped -->
-                            @else
+                            <?php else: ?>
                                 <p class='list-group-item-info'>No record found.</p>
-                            @endif
+                            <?php endif; ?>
                 </div>
 
 
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

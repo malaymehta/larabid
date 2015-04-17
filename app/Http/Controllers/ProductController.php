@@ -44,7 +44,7 @@ class ProductController extends Controller
 		}
 	}
 
-	public function info($item_id = 0)
+	public function show($item_id = 0)
 	{
 		$relatedItemInfo = Product::where("item_id", "!=", $item_id);
 		$itemInfo        = Product::find($item_id);

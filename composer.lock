@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5e410c1551386aaba5fd17ba08b15909",
+    "hash": "c41fac4f00082d14551c03baeef90c7e",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
