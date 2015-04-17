@@ -58,6 +58,4 @@ class ProductController extends Controller
 		$file_rename = str_random() . '.' . $extension;
 		return $file_rename;
 	}
-
-
 }

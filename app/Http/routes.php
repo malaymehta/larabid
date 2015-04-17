@@ -21,7 +21,7 @@ Route::get('logout', 'SessionController@destroy');
 Route::group(['middleware' => 'auth'], function ()
 {
 	Route::get('add-product', 'ProductController@create');
-	Route::post('save-product', 'ProductController@store');
+	Route::post('add-product', 'ProductController@store');
 });
 
 
