@@ -26,4 +26,9 @@ class Product extends \Eloquent
 	{
 		return $this->belongsTo('App\Models\User', 'id', 'user_id');
 	}
+
+	public function bids()
+	{
+		return $this->belongsTo('App\Models\Bids', 'id', 'product_id');
+	}
 }

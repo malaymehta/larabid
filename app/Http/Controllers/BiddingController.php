@@ -2,15 +2,10 @@
 
 use App\Models\Product;
 use View;
-use Illuminate\Database\DatabaseManager as DB; // For transactions
-
+use Illuminate\Support\Facades\DB;
 
 class BiddingController extends Controller
 {
-	/**
-	 * Create a new controller instance.
-	 * @return void
-	 */
 	public function __construct()
 	{
 		$this->middleware('auth');

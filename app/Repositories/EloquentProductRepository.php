@@ -25,8 +25,8 @@ class EloquentProductRepository implements ProductRepositoryInterface
         $relationships = $base_relationships;
 
         /** @var Collection $products */
-		$products = Cache::remember('product'.implode("_",$product_id),CATALOG_CACHE_TIMEOUT,function()use($product_id,$relationships){
-			return Product::with($relationships)->whereIn('product_id', $product_id)->get();
+		$products = Cache::remember('product'.implode("_",$product_id),CATALOG_CACHE_TIMEOUT,function()use($item_id,$base_relationships){
+			return Product::with($base_relationships)->whereIn('product_id', $item_id)->get();
 		});
 		foreach($products as $product) {
             $product->prepare();
