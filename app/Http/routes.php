@@ -22,6 +22,9 @@ Route::group(['middleware' => 'auth'], function ()
 	Route::post('save-product', 'ProductController@store');
 });
 
+Route::get('item-details/{item_id}','ProductController@info');
+Route::get('bid/{item_id}','ProductController@info');
+
 Route::get('home', 'HomeController@index');
 
 Route::controllers([
